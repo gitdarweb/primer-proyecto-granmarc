@@ -1,0 +1,35 @@
+/* Estilos para el componente ItemList de GranMarc */
+.item-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* Centra las tarjetas horizontalmente */
+    gap: 20px;
+    padding: 20px;
+    width: 100%;
+    /* Asegura que ocupe todo el ancho disponible */
+    box-sizing: border-box;
+    /* Evita desbordamientos por padding */
+}
+
+/* Asegura que las tarjetas individuales respeten el diseño */
+.item-list .product-item {
+    flex: 0 1 15.625rem;
+    /* Coincide con max-width de Item.css */
+    margin: 0;
+    /* Elimina márgenes adicionales que podrían desplazar */
+}
+
+/* Media query para pantallas pequeñas */
+@media (max-width: 600px) {
+    .item-list {
+        padding: 10px;
+        gap: 15px;
+    }
+
+    .item-list .product-item {
+        flex: 0 1 100%;
+        /* Tarjetas ocupan todo el ancho en móviles */
+        max-width: 100%;
+    }
+}

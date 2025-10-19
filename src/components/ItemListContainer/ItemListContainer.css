@@ -1,0 +1,38 @@
+/* Estilos para el componente ItemListContainer de GranMarc */
+.item-list-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* Centra las tarjetas horizontalmente */
+    gap: 20px;
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.item-list-container .product-item {
+    flex: 0 1 15.625rem;
+    /* Coincide con max-width de Item.css */
+    margin: 0;
+}
+
+.item-list-container h2 {
+    width: 100%;
+    text-align: center;
+    /* Asegura que el título esté centrado */
+    color: #f5f5f5;
+    margin-bottom: 20px;
+}
+
+/* Media query para pantallas pequeñas */
+@media (max-width: 600px) {
+    .item-list-container {
+        padding: 10px;
+        gap: 15px;
+    }
+
+    .item-list-container .product-item {
+        flex: 0 1 100%;
+        max-width: 100%;
+    }
+}

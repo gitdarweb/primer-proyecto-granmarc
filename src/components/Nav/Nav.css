@@ -1,0 +1,64 @@
+/* Estilos para el componente Nav de GranMarc */
+nav {
+    background-color: #1e1e1e;
+    /* Fondo oscuro, coherente con Item.css */
+    padding: 10px 20px;
+    border-bottom: 1px solid #333;
+    /* Borde oscuro para consistencia */
+}
+
+/* Estilo para la lista de navegación */
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    /* Reducido para mejor ajuste en móviles */
+    flex-wrap: wrap;
+    /* Permite que los enlaces se reorganicen en pantallas pequeñas */
+}
+
+/* Estilo para los enlaces */
+nav a {
+    text-decoration: none;
+    color: #f5f5f5;
+    /* Texto claro, coherente con Item.css */
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 8px 12px;
+    transition: color 0.3s, background-color 0.3s;
+}
+
+/* Hover para los enlaces */
+nav a:hover {
+    color: #ffffff;
+    background-color: #1D67FA;
+    /* Azul de GranMarc, coherente con product-title */
+    border-radius: 4px;
+}
+
+/* Estilo para el contador del carrito */
+nav span {
+    background-color: #28a745;
+    /* Verde, coherente con botones de Item.css */
+    color: white;
+    font-size: 0.8rem;
+    padding: 3px 7px;
+    border-radius: 50%;
+    margin-left: 5px;
+    vertical-align: middle;
+}
+
+/* Responsividad para pantallas pequeñas */
+@media (max-width: 600px) {
+    nav {
+        padding: 8px 10px;
+    }
+
+    nav a {
+        font-size: 0.9rem;
+        padding: 6px 10px;
+    }
+}

@@ -1,0 +1,72 @@
+/* Estilos para el componente Item */
+.product-item {
+    background-color: #1e1e1e;
+    /* Fondo oscuro, ajustable para GranMarc */
+    border: 1px solid #333;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    max-width: 15.625rem;
+    /* 250px */
+    min-width: 12rem;
+    /* Evita que se encoja demasiado en móviles */
+    color: #f5f5f5;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 0.25rem;
+    /* Suaviza bordes de la imagen */
+}
+
+.product-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.8);
+}
+
+.product-item a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    /* Hace que el enlace cubra todo el bloque */
+}
+
+.product-item p {
+    margin: 0.375rem 0;
+    /* 6px */
+    font-size: 0.9rem;
+}
+
+.product-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #1D67FA;
+    /* Azul vibrante, ajustable para GranMarc */
+}
+
+.product-actions {
+    margin-top: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.product-actions .btn-add {
+    background-color: #28a745;
+    /* Verde para el botón, acorde con Nav.css */
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s;
+}
+
+.product-actions .btn-add:hover {
+    background-color: #218838;
+    /* Verde más oscuro en hover */
+}

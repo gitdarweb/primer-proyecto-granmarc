@@ -1,0 +1,26 @@
+[
+    {
+        "id": "1",
+        "name": "Guante Invictus",
+        "price": 110000,
+        "category": "dulce",
+        "description": ":Diseño anatómico, cómodo y seguro. Elaborado con espumado de poliuretano moldeado.",
+        "imageUrl": "/images/guantesInvictus.jpeg"
+    },
+    {
+        "id": "2",
+        "name": "Zapato Invictus",
+        "price": 110000,
+        "category": "salado",
+        "description": ":Diseño ergonómico, cómodo y seguro de gran absorción al impacto. ",
+        "imageUrl": "/images/botasInvictus.webp"
+    },
+    {
+        "id": "3",
+        "name": "Foco Cuadrado",
+        "category": "dulce",
+        "price": 80000,
+        "description": ":Elaborado con tejido tipo nylon con PVC brillante. Interior de espuma de poliuretano de 10 cm de espesor súper absorbente de impactos.",
+        "imageUrl": "/images/focoCuadrado.jpeg"
+    }
+]
