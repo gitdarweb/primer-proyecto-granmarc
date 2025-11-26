@@ -11,14 +11,14 @@
         "id": "2",
         "name": "Zapato Invictus",
         "price": 110000,
-        "category": "salado",
+        "category": "dulce",
         "description": ":Diseño ergonómico, cómodo y seguro de gran absorción al impacto. ",
         "imageUrl": "/images/botasInvictus.webp"
     },
     {
         "id": "3",
         "name": "Foco Cuadrado",
-        "category": "dulce",
+        "category": "salado",
         "price": 80000,
         "description": ":Elaborado con tejido tipo nylon con PVC brillante. Interior de espuma de poliuretano de 10 cm de espesor súper absorbente de impactos.",
         "imageUrl": "/images/focoCuadrado.jpeg"

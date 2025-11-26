@@ -1,27 +1,31 @@
-import "./ItemList.css";
 import { Link } from "react-router-dom";
 import { Item } from "../Item/Item";
 
 export const ItemList = ({ lista }) => {
-    //pasamos el button como children, no es obligatorio
 
     return (
-        <>
+        // 1. Contenedor Row: Define la fila de la cuadrícula.
+        // row-cols-1: 1 columna en móvil (xs)
+        // row-cols-md-3: 3 columnas en tabletas (md)
+        // g-4: Espacio (gap) de 4 entre las tarjetas
+        <div className="row row-cols-1 row-cols-md-3 g-4">
             {lista.length ? (
                 lista.map((prod) => (
-                    //como yo reutilizo Item en el detalle, no quiero conflictos de "click"
-                    //al tocar el boton de "agregar al carrito" y se clickee tambien la card
-
-                    //Por eso para evitar poner Link en Item, venimos a ItemList y pasamos
-                    //Link en el mapeo, con su key, ya que la key va en el componente que retorne el mapeo
-                    //(y ahora no es Item, sino Link)
-                    <Link to={`/detail/${prod.id}`} key={prod.id}>
-                        <Item {...prod} />
-                    </Link>
+                    // 2. Contenedor Columna: Define el ancho de cada tarjeta.
+                    // Usamos una columna por cada item mapeado.
+                    <div className="col" key={prod.id}>
+                        <Link
+                            to={`/detail/${prod.id}`}
+                            // Eliminamos la decoración del enlace para que la tarjeta se vea limpia
+                            className="text-decoration-none"
+                        >
+                            <Item {...prod} />
+                        </Link>
+                    </div>
                 ))
             ) : (
-                <p>No hay productos</p>
+                <p className="text-center w-100">No hay productos</p>
             )}
-        </>
+        </div>
     );
 };

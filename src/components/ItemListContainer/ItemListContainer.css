@@ -4,16 +4,25 @@
     flex-wrap: wrap;
     justify-content: center;
     /* Centra las tarjetas horizontalmente */
-    gap: 20px;
+    gap: 30px;
+    /* Espacio entre tarjetas */
     padding: 20px;
     width: 100%;
     box-sizing: border-box;
+    max-width: 1280px;
+    /* Limita el ancho al mismo que #root */
+    margin: 0 auto;
+    /* Centra el contenedor */
+    min-height: 50vh;
+    /* Asegura altura mínima */
 }
 
 .item-list-container .product-item {
-    flex: 0 1 15.625rem;
-    /* Coincide con max-width de Item.css */
+    flex: 0 1 calc(15.625rem - 20px);
+    /* Ajuste para espacio dentro de gap */
     margin: 0;
+    /* Añadido: asegura que no se desborden */
+    box-sizing: border-box;
 }
 
 .item-list-container h2 {
@@ -25,7 +34,9 @@
 }
 
 /* Media query para pantallas pequeñas */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+
+    /* Cambiado de 600px a 768px para mejor responsividad */
     .item-list-container {
         padding: 10px;
         gap: 15px;
@@ -33,6 +44,15 @@
 
     .item-list-container .product-item {
         flex: 0 1 100%;
+        /* Tarjetas ocupan todo el ancho en móviles */
         max-width: 100%;
+    }
+}
+
+/* Media query para tablets (opcional, para transición suave) */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .item-list-container .product-item {
+        flex: 0 1 calc(50% - 15px);
+        /* Dos tarjetas por fila */
     }
 }

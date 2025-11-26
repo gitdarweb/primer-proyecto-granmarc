@@ -1,30 +1,28 @@
-import "./ItemListContainer.css";
 import { useEffect, useState } from "react";
 import { ItemList } from "../ItemList/ItemList";
+import { useParams } from "react-router-dom";
+import { getProducts } from "../../services/products";
+
+import "./ItemListContainer.css";
+
 
 export const ItemListContainer = ({ titulo }) => {
     const [products, setProducts] = useState([]);
-//estado y llamada a una api simulada con json local
+    const { category } = useParams();
+
     useEffect(() => {
-        fetch("/data/products.json")
-            .then((res) => {
-                if (!res.ok) {
-                    throw new Error("Hubo un problema al buscar productos");
-                }
-                return res.json();
-            })
-            .then((data) => {
-                setProducts(data);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }, []);
+        getProducts(category)
+            .then((data) => setProducts(data))
+            .catch((err) => console.log(err));
+    }, [category]);
 
     return (
-        <section>
-            <h1>{titulo}</h1>
-            <ItemList lista={products} /> {/* le pasamos la lista de productos */}
+        // ✅ Usamos 'container' para centrar y 'my-4' para margen vertical
+        <section className="container my-4">
+            <h1 className="text-center mb-4">{titulo}</h1> {/* Centramos el título */}
+
+            {/* 🚨 ItemList es el que contendrá la estructura Row y Col */}
+            <ItemList lista={products} />
         </section>
     );
 };
