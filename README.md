@@ -1,105 +1,71 @@
-# Proyecto GranMarc
-Proyecto React para la pre-entrega. Incluye carrito de compras y productos.
+Proyecto GranMarc: E-commerce con APIs Externas y Panel Admin
 
-## Instalación
-1. Clona: `git clone https://github.com/gitdarweb/primer-proyecto-granmarc.git`
-2. Instala: `npm install`
-3. Inicia: `npm run dev`
-## 
-// Esta funcion la hacemos para solucionar el problema de mockAPI que no permite
-// subir imagenes: subimos imagenes a imgbb y devuelve una URL publica.
-// Luego esa URL la usamos para mockAPI 😉
-//
-// ⚠️ Importante: esta clave queda expuesta en el cliente.
-//     Para prácticas esta ok, pero no es ideal para ambientes reales.
+Descripción General
 
-const IMGBB_API_KEY = "f26e271b2ae48b997429307ca07c50af"; //👈reemplazan por la suya
-const ENDPOINT = "https://api.imgbb.com/1/upload";
+Este proyecto representa la Entrega Final de un E-commerce desarrollado en React. El objetivo principal fue crear una aplicación completa que gestiona un catálogo de productos, un carrito de compras funcional, y un panel de administración robusto para el alta de nuevos ítems, todo ello apoyado en servicios externos (APIs) para la persistencia y almacenamiento de datos.
 
-// Funcion con la que vamos a convertir la imagen (File) a cadena base64
-// Base64 es una codificacion de texto que representa datos binarios (la imagen)
-// El navegador genera un Data URL del estilo:
-//    "data:image/png;base64,AAAA...."
-// Para imgbb, hay que enviar **solo la parte base64** (sin el prefijo "data:...").
+El proyecto demuestra un flujo de datos completo, desde la carga de un producto por el administrador hasta su visualización por el usuario final.
 
-export const fileToBase64 = (file) => {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
+🛠️ Tecnologías Clave
 
-    reader.onload = () => {
-      // reader.result viene como "data:image/png;base64,AAAA..."
-      const result = String(reader.result);
-      const parts = result.split(",");
+Frontend: React (Vite)
 
-      if (parts.length < 2) {
-        reject(new Error("Formato de Data URL inválido"));
-        return;
-      }
+Estilos: Bootstrap 5 (Clases de utilidad para un diseño responsivo y limpio).
 
-      const base64 = parts[1]; // sacamos el prefijo "data:...;base64,"
-      resolve(base64);
-    };
+Ruteo: React Router DOM (Manejo de rutas tipo SPA).
 
-    reader.onerror = () => {
-      reject(new Error("No se pudo leer el archivo"));
-    };
+🎯 Características Implementadas
 
-    reader.readAsDataURL(file);
-  });
-};
+La aplicación se divide en dos grandes áreas para asegurar la funcionalidad completa de un E-commerce:
 
-export const uploadToImgbb = async (file) => {
-  // Validaciones mínimas
-  if (!file) {
-    throw new Error("No se recibió ningún archivo de imagen");
-  }
+1. Área Pública (Frontend)
 
-  const form = new FormData();
-  form.append("key", IMGBB_API_KEY);
+Catálogo (ItemListContainer): Muestra todos los productos obtenidos en tiempo real.
 
-  // Convertimos el archivo a base64 antes de enviarlo
-  const base64 = await fileToBase64(file);
-  form.append("image", base64);
+Detalle de Producto (ItemDetailContainer): Presenta información ampliada y la funcionalidad de contador para añadir al carrito.
 
-  // Llamada a la API con fetch para la carga de la imagen (POST)
-  const response = await fetch(ENDPOINT, {
-    method: "POST",
-    body: form,
-  });
+Carrito (Cart): Gestión completa de añadir, eliminar ítems, y generar una orden de compra simulada.
 
-  // Parseamos la respuesta como JSON
-  let json;
-  try {
-    json = await response.json();
-  } catch {
-    throw new Error("La respuesta del servidor no es JSON válido");
-  }
+2. Panel de Administración (Ruta Protegida)
 
-  // Manejo de errores de red o del propio API
-  if (!response.ok || (json && json.success === false)) {
-    const message =
-      (json && json.error && json.error.message) || "Error al subir la imagen";
-    throw new Error(message);
-  }
+Login (/admin): Implementación de un Contexto de Autenticación para proteger el acceso a las funciones de administración.
 
-  // imgbb devuelve varias URLs posibles
-  // - url: original
-  // - display_url: via su CDN (la mas usada para mostrar)
-  if (json && json.data) {
-    if (json.data.display_url) {
-      return json.data.display_url;
-    }
+Alta de Productos: Formulario funcional para el ingreso de nuevos ítems, incluyendo la gestión de archivos (imágenes).
 
-    if (json.data.url) {
-      return json.data.url;
-    }
-  }
+🔗 Arquitectura y Uso de APIs Externas
 
-  // Si llegamos acá, no recibimos los campos esperados
-  throw new Error("No se recibió una URL válida desde imgbb");
-  -------------------------------------------------------------
-  {
-    "rewrites": [
-        { "source": "/api/(.*)", "destination": "/" }
-    ]
-}
+La clave del proyecto fue integrar servicios externos para manejar la persistencia de datos y el almacenamiento de archivos.
+
+1. MockAPI (Base de Datos para JSON)
+
+Función: Almacenamiento y gestión de la información estructurada de los productos (nombre, precio, descripción, categoría).
+
+Implementación: Se realizaron llamadas asíncronas para las operaciones esenciales:
+
+GET: Lectura del catálogo y detalles por ID.
+
+POST: Envío de nuevos productos a la base de datos a través del formulario de administración.
+
+2. ImgBB (Almacenamiento de Imágenes)
+
+Función: Almacenamiento seguro de archivos binarios (las fotos de los productos).
+
+Flujo de Datos:
+
+El usuario sube una imagen en el formulario.
+
+El código gestiona la subida de esta imagen a ImgBB.
+
+ImgBB devuelve una URL pública permanente.
+
+Solo esta URL (y no la imagen binaria) es guardada en el campo correspondiente del producto en MockAPI.
+
+Este enfoque asegura un rendimiento óptimo, ya que la base de datos solo gestiona texto y los archivos pesados se sirven desde un CDN (Content Delivery Network).
+
+🚀 Despliegue en Vercel
+
+El proyecto está desplegado y accesible a través de Vercel.
+
+Solución al Routing (Error 404)
+
+Al tratarse de una Single Page Application (SPA), las rutas internas (/admin, /carrito) generaban un error 404 en el servidor. Esto se solucionó mediante la inclusión del archivo de configuración vercel.json en la raíz del proyecto, el cual reescribe todas las peticiones a index.html para que React Router tome el control del ruteo.
