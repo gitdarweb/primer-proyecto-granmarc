@@ -31,7 +31,7 @@ export const Login = () => {
         // 1. Contenedor principal centrado, con margen superior
         <div className="container d-flex justify-content-center mt-5">
             {/* 2. Formulario dentro de una tarjeta (card) para un aspecto limpio */}
-            <form onSubmit={handleSubmit} className="card p-4 shadow" style={{ maxWidth: '400px', width: '100%' }}>
+            <form onSubmit={handleSubmit} className="card p-4 text-dark" style={{ maxWidth: '400px', width: '100%' }}>
 
                 <h2 className="mb-4 text-center text-primary">Iniciar Sesión</h2>
 

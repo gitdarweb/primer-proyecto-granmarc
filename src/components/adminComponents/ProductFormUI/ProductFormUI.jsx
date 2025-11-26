@@ -11,7 +11,7 @@ export const ProductFormUI = ({
         // w-100 es para asegurar que tome el ancho completo en el contenedor padre.
         <section className="d-flex justify-content-center w-100">
             {/* 2. 'card' le da un marco, 'p-4' es padding, 'mt-5' es margen superior, 'shadow' le da sombra */}
-            <form className="card p-4 mt-5 shadow" style={{ maxWidth: '600px' }} onSubmit={onSubmit}>
+            <form className="card p-4 mt-5 text-dark" style={{ maxWidth: '600px' }} onSubmit={onSubmit}>
                 <h2 className="mb-4 text-center text-primary">Agregar Producto</h2>
 
                 {/* Mostrar error general si existe */}

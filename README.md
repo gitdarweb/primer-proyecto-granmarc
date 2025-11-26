@@ -97,3 +97,9 @@ export const uploadToImgbb = async (file) => {
 
   // Si llegamos acá, no recibimos los campos esperados
   throw new Error("No se recibió una URL válida desde imgbb");
+  -------------------------------------------------------------
+  {
+    "rewrites": [
+        { "source": "/api/(.*)", "destination": "/" }
+    ]
+}
